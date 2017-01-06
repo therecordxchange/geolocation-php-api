@@ -12,7 +12,7 @@ namespace JeroenDesloovere\Geolocation;
 class Geolocation
 {
     // API URL
-    const API_URL = 'http://maps.googleapis.com/maps/api/geocode/json';
+    const API_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 
     /**
      * Do call
@@ -34,8 +34,8 @@ class Geolocation
         // add every parameter to the url
         foreach ($parameters as $key => $value) $url .= $key . '=' . urlencode($value) . '&';
 
-        // trim last &
-        $url = trim($url, '&');
+        // add API key to the url
+        $url .= 'key=' . env('GOOGLE_MAP_API_KEY');
 
         // init curl
         $curl = curl_init();
